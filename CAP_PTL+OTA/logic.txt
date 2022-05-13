@@ -1,0 +1,34 @@
+here is the logic of the program at the moment:
+1. start the AP mode in APSTA and HTTP server
+2. check for wifi creds in NVS 
+	if found:
+		check if the last created token expired or not
+		if expired:
+			check if any token exists in nvs or not 
+				if not:
+					make a JWT signed by the private key
+				else: 
+					skip the jwt making process
+		if not expired:
+			skip the jwt making process
+		send queue message after token is created
+	if not found:
+		wait for credentials from web server
+		reboot on getting the creds and save them to nvs
+3. when queue message recieved from jwt process 
+	check if new jwt was created successfully
+		if sucessfully created:
+			over rride the default jwt 
+		else:
+			use default jwt made from jwt.io
+	check if config exists in nvs:
+		if exists:
+			skip the request part and return 
+		if not exists:
+			download from link 
+			and save to nvs 
+
+
+----CONFUSIONS:
+	DO WE NEED TO UPDATE THE JWT AGAIN AND AGAIN OR WE ONLY NEED TO DO SO ON REBOOT AND IF AND ONLY IF THE JWT IS EXPIRED 
+	
