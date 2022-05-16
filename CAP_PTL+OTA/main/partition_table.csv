@@ -1,0 +1,7 @@
+#name, type, subtype, offset, size, flags
+nvs, data,nvs,0x9000,0x3000
+factory, app, factory,0x10000, 2M
+ota_0, app,ota_0,, 512K
+ota_1,app,ota_1,,512K
+
+
